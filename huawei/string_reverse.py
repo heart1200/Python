@@ -31,7 +31,7 @@ def string_reverse_in_recursion(string):
     return string_reverse_in_recursion(string[1:]) + string[0]
 
 
-# 使用循环
+# 使用while循环
 def string_reverse_in_while(string):
     new_string = ""
     index = len(string)
@@ -39,6 +39,15 @@ def string_reverse_in_while(string):
         new_string += string[index-1]
         index = index - 1
     print(new_string)
+
+
+# 使用for循环
+def string_reverse_in_for(string):
+    new_string = ''
+    index = len(string) - 1
+    for i, v in enumerate(string):
+        new_string += string[index - i]
+    return new_string
 
 
 # 使用栈（先进后出，类似箱子，先放的书本会先被压在最底下）
@@ -56,3 +65,4 @@ string_reverse_in_reduce("987654")
 print(string_reverse_in_recursion("123456"))
 string_reverse_in_while("1234")
 print(string_reverse_in_pop("abcdefg"))
+print(string_reverse_in_for("qwert"))
