@@ -5,14 +5,14 @@ import requests
 
 class RunMain:
     def __init__(self, url, method, data=None):
-        self.res = self.run_main(self, url, method, data)
+        self.res = self.run_main(url, method, data)
 
     def test_requests_post(self, url, data):
         res = requests.post(url=url, data=data)
         if res is not None:
             return json.dumps(res.json(), indent=2, sort_keys=True)
         else:
-            return None
+            return 'None'
 
     def test_requests_get(self, url, data):
         res = requests.get(url=url, data=data).json()
@@ -31,8 +31,8 @@ class RunMain:
 
 if __name__ == '__main__':
     url_cate = 'http://coding.imooc.com/api/cate'
-    url_test = 'https://www.baidu.com/sugrec?prod=pc_his&from=pc_web&json=1&sid=\
-    33812_33751_33344_31254_33781_33760_33676_33714_26350_22159_33794&hisdata=&_t=1617328420907&csor=0 '
+    url_test = 'https://www.baidu.com/home/xman/data/tipspluslist?indextype=manht&_req_seqid=0x8b814a890008fe76&asyn' \
+               '=1&t=1617421662161&sid=33839_33638_33747_33344_31660_33782_33675_33392_26350 '
     data_cate = {
         'timestamp': '1507034803124',
         'uid': '5249191',
@@ -43,7 +43,7 @@ if __name__ == '__main__':
         'errorCode': 1001
     }
     run = RunMain(url_test, 'get')
-    # print(run.res)
+    print(run.res)
 
 # print(run_main(url_test, 'get'))
 # print(run_main(url_cate, 'POST', data_cate))
