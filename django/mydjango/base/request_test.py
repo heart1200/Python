@@ -4,8 +4,8 @@ import requests
 
 
 class RunMain:
-    def __init__(self, url, method, data=None):
-        self.res = self.run_main(url, method, data)
+    # def __init__(self, url, method, data=None):
+    #     self.res = self.run_main(url, method, data)
 
     def test_requests_post(self, url, data):
         res = requests.post(url=url, data=data)
