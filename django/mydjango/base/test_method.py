@@ -1,3 +1,4 @@
+import json
 import unittest
 
 from django.mydjango.base.request_test import RunMain
@@ -33,12 +34,12 @@ class TestMethod(unittest.TestCase):
         print("tearDown is running")
 
     def test_01(self):
-        res = self.run.run_main(url_test, 'get')
-        print(res)
+        res = json.loads(self.run.run_main(url_test, 'get'))
+        self.assertEqual(res['errNo'], '403', '测试失败')
 
     def test_02(self):
-        res = self.run.run_main(url_cate, 'post', data_cate)
-        print(res)
+        res = json.loads(self.run.run_main(url_cate, 'post', data_cate))
+        self.assertEqual(res['errorCode'], 1007, '测试失败')
 
 
 if __name__ == '__main__':
