@@ -36,11 +36,19 @@ class TestMethod(unittest.TestCase):
     def test_01(self):
         res = json.loads(self.run.run_main(url_test, 'get'))
         self.assertEqual(res['errNo'], '403', '测试失败')
+        print('-----test_01 is running------')
+        # globals()['user_id'] = 345
 
     def test_02(self):
+        # print(user_id)
         res = json.loads(self.run.run_main(url_cate, 'post', data_cate))
         self.assertEqual(res['errorCode'], 1007, '测试失败')
+        print('-----test_02 is running------')
 
 
 if __name__ == '__main__':
-    unittest.main
+    suite = unittest.TestSuite()
+    suite.addTest(TestMethod("test_01"))
+    suite.addTest(TestMethod("test_02"))
+    unittest.TextTestRunner().run(suite)
+
