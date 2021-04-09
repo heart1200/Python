@@ -1,6 +1,9 @@
+import HTMLTestRunner
+import sys
+sys.path.append(r'C:/Luodayu/Python')
+
 import json
 import unittest
-
 from django.mydjango.base.request_test import RunMain
 
 url_cate = 'http://coding.imooc.com/api/cate'
@@ -36,19 +39,26 @@ class TestMethod(unittest.TestCase):
     def test_01(self):
         res = json.loads(self.run.run_main(url_test, 'get'))
         self.assertEqual(res['errNo'], '403', '测试失败')
-        print('-----test_01 is running------')
+        # print('-----test_01 is running------')
         # globals()['user_id'] = 345
 
     def test_02(self):
         # print(user_id)
         res = json.loads(self.run.run_main(url_cate, 'post', data_cate))
         self.assertEqual(res['errorCode'], 1007, '测试失败')
-        print('-----test_02 is running------')
+        # print('-----test_02 is running------')
 
 
 if __name__ == '__main__':
+    report_path = '../report/test_report.html'
+    rp = open(report_path, 'wb')
     suite = unittest.TestSuite()
     suite.addTest(TestMethod("test_01"))
     suite.addTest(TestMethod("test_02"))
-    unittest.TextTestRunner().run(suite)
-
+    # unittest.TextTestRunner().run(suite)
+    runner = HTMLTestRunner.HTMLTestRunner(
+        stream=rp,
+        title="This is first report",
+        description='Tester: LUODAYU')
+    runner.run(suite)
+    rp.close()
