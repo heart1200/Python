@@ -1,5 +1,8 @@
 import HTMLTestRunner
 import sys
+
+from mock import mock
+
 sys.path.append(r'C:/Luodayu/Python')
 
 import json
@@ -18,7 +21,6 @@ data_cate = {
     'cid': '0',
     'errorCode': 1001
 }
-
 
 class TestMethod(unittest.TestCase):
     @classmethod
@@ -43,9 +45,10 @@ class TestMethod(unittest.TestCase):
         # globals()['user_id'] = 345
 
     def test_02(self):
-        # print(user_id)
-        res = json.loads(self.run.run_main(url_cate, 'post', data_cate))
-        self.assertEqual(res['errorCode'], 1007, '测试失败')
+        mock_data = mock.Mock(return_value=data_cate)
+        self.run.run_main = mock_data
+        res = self.run.run_main(url_cate, 'post', data_cate)
+        self.assertEqual(res['errorCode'], 1001, '测试失败')
         # print('-----test_02 is running------')
 
 
