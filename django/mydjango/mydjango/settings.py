@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 注册新建的应用
-    'web',
+    'web.apps.WebConfig',
+    # 'web',
 ]
 
 MIDDLEWARE = [

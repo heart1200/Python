@@ -31,3 +31,7 @@ def login(request):
         return HttpResponse(result, content_type='application/json;charset=utf-8')
     else:
         return render(request, 'login.html')
+
+
+def hello_world(request):
+    return HttpResponse("Hello world")
